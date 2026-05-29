@@ -28,6 +28,9 @@
     .no-print { display: none; }
     .page-break { page-break-before: always; }
     body { background: white; }
+    /* Niente bande di fondo alternate in stampa: pagine uniformi,
+       le card/box danno la struttura (la copertina e la CTA restano blu) */
+    .bg-sfondo, .bg-white { background: #fff !important; }
     /* Layout denso per la stampa: padding sezioni ridotto, niente buchi */
     .container { padding: 2.25rem 3rem !important; }
     .cover { min-height: 100vh; }
