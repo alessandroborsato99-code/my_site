@@ -28,13 +28,19 @@
     .no-print { display: none; }
     .page-break { page-break-before: always; }
     body { background: white; }
-    /* Evita che i blocchi si spezzino tra due pagine */
-    .capability, .info-box, .warning-box, .quote,
-    .gpt-card, .tool-card, .step-content, .roadmap-step,
-    .pill-row, .two-col, .cap-body { break-inside: avoid; }
-    /* Tieni i titoli attaccati al contenuto che segue */
-    h2, h3, .section-meta, .prompt-label { break-after: avoid; }
-    .prompt { break-inside: avoid; }
+    /* Layout denso per la stampa: padding sezioni ridotto, niente buchi */
+    .container { padding: 2.25rem 3rem !important; }
+    .cover { min-height: 100vh; }
+    /* Proteggi dallo split solo i blocchi piccoli e atomici.
+       Le .capability (grandi) possono spezzarsi: evita i buchi di fine pagina. */
+    .info-box, .warning-box, .quote,
+    .gpt-card, .tool-card, .prompt { break-inside: avoid; }
+    /* Tieni titoli/etichette attaccati al contenuto che segue */
+    h2, h3, .section-meta, .prompt-label, .cap-header { break-after: avoid; }
+    /* Margini più compatti tra i blocchi */
+    .capability { margin-bottom: 1.5rem; }
+    h2 { margin-bottom: 1rem; }
+    .lead { margin-bottom: 1.25rem; }
   }
   .cover {
     background: var(--blu);
