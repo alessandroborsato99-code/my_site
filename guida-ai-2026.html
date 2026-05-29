@@ -180,17 +180,18 @@
             <div class="ti">L'AI<br>in <em>Azienda</em></div>
           </div>
 
+          <!-- TEMP-PREVIEW: campi non obbligatori per anteprima estetica. Rimettere "required" quando il form Brevo è collegato. -->
           <form class="guida-form" id="guidaForm" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST">
             <h2>Scarica la guida</h2>
             <p class="sub">Lascia la tua email: ti diamo subito il PDF e, ogni tanto, qualche spunto pratico sull'AI in azienda. Niente spam.</p>
 
             <div class="guida-field">
               <label for="g-nome">Nome</label>
-              <input type="text" id="g-nome" name="nome" placeholder="Il tuo nome" required />
+              <input type="text" id="g-nome" name="nome" placeholder="Il tuo nome" />
             </div>
             <div class="guida-field">
               <label for="g-email">Email</label>
-              <input type="email" id="g-email" name="email" placeholder="nome@azienda.it" required />
+              <input type="email" id="g-email" name="email" placeholder="nome@azienda.it" />
             </div>
             <div class="guida-field">
               <label for="g-azienda">Azienda <span style="color:var(--ink-faint);font-weight:400">(facoltativo)</span></label>
@@ -198,7 +199,7 @@
             </div>
 
             <div class="guida-consent">
-              <input type="checkbox" id="g-consent" name="consenso" required />
+              <input type="checkbox" id="g-consent" name="consenso" />
               <label for="g-consent">Ho letto la <a href="privacy-policy.html" target="_blank" rel="noopener">privacy policy</a> e acconsento al trattamento dei dati per ricevere la guida e comunicazioni occasionali. Posso disiscrivermi quando voglio.</label>
             </div>
 
