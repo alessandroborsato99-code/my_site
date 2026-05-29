@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AI in Azienda · Guida Pratica 2026 | Alessandro Borsato</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blu:    #1B2D4F;
+    --terra:  #C4603A;
+    --sfondo: #F7F5F0;
+    --sabbia: #E8E4DC;
+    --grigio: #6B6660;
+    --testo:  #3D3C39;
+    --bianco: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sfondo);
+    color: var(--testo);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  @media print {
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+    body { background: white; }
+    /* Evita che i blocchi si spezzino tra due pagine */
+    .capability, .info-box, .warning-box, .quote,
+    .gpt-card, .tool-card, .step-content, .roadmap-step,
+    .pill-row, .two-col, .cap-body { break-inside: avoid; }
+    /* Tieni i titoli attaccati al contenuto che segue */
+    h2, h3, .section-meta, .prompt-label { break-after: avoid; }
+    .prompt { break-inside: avoid; }
+  }
+  .cover {
+    background: var(--blu);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%;
+    height: 100%;
+    background: rgba(196,96,58,0.08);
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .cover-accent { width: 60px; height: 4px; background: var(--terra); margin-bottom: 3rem; }
+  .cover-label {
+    font-size: 0.7rem; font-weight: 500; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-family: 'Fraunces', serif; font-size: 3.8rem; font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 0.5rem;
+  }
+  .cover h1 em { color: var(--terra); font-style: italic; font-weight: 300; }
+  .cover-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.6); font-weight: 300;
+    margin-top: 1.5rem; max-width: 500px; line-height: 1.75;
+  }
+  .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 1; }
+  .cover-author { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff; }
+  .cover-author span { color: var(--terra); }
+  .cover-author small {
+    display: block; font-family: 'DM Sans', sans-serif; font-size: 0.72rem;
+    font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 0.2rem; letter-spacing: 0.05em;
+  }
+  .cover-year { font-size: 0.72rem; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.1em; }
+  .container { max-width: 860px; margin: 0 auto; padding: 5rem 4rem; }
+  .section-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
+  .section-num { font-size: 0.65rem; font-weight: 500; color: var(--terra); letter-spacing: 0.12em; text-transform: uppercase; }
+  .section-line { width: 32px; height: 1px; background: var(--terra); }
+  .section-tag { font-size: 0.65rem; font-weight: 400; color: var(--grigio); letter-spacing: 0.1em; text-transform: uppercase; }
+  h2 {
+    font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.025em; color: var(--blu); margin-bottom: 1.5rem;
+  }
+  h2 em { color: var(--terra); font-style: italic; font-weight: 300; }
+  h3 {
+    font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700;
+    color: var(--blu); margin-bottom: 0.5rem; line-height: 1.3;
+  }
+  p { margin-bottom: 1rem; color: var(--testo); }
+  .lead { font-size: 1.05rem; color: var(--grigio); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+  .quote { border-left: 3px solid var(--terra); background: var(--bianco); padding: 1.25rem 1.75rem; border-radius: 0 4px 4px 0; margin: 2rem 0; }
+  .quote p { font-family: 'Fraunces', serif; font-size: 1.05rem; font-style: italic; color: var(--blu); margin-bottom: 0.3rem; }
+  .quote cite { font-size: 0.78rem; color: var(--grigio); font-weight: 400; font-style: normal; }
+  .capability { background: var(--bianco); border: 1px solid var(--sabbia); border-radius: 6px; margin-bottom: 2.5rem; overflow: hidden; }
+  .cap-header { background: var(--blu); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .cap-num { font-size: 0.62rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; border: 1px solid rgba(255,255,255,0.15); padding: 0.2rem 0.6rem; border-radius: 2rem; white-space: nowrap; }
+  .cap-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff; }
+  .cap-body { padding: 1.5rem; }
+  .cap-desc { font-size: 0.88rem; color: var(--grigio); line-height: 1.75; font-weight: 300; margin-bottom: 1.25rem; }
+  .cap-uses { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .cap-use-tag { font-size: 0.68rem; font-weight: 400; color: var(--blu); background: var(--sfondo); border: 1px solid var(--sabbia); padding: 0.25rem 0.7rem; border-radius: 2rem; }
+  .prompt-label { font-size: 0.62rem; font-weight: 500; color: var(--terra); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; margin-top: 1rem; }
+  .prompt { background: var(--sfondo); border-left: 3px solid var(--terra); padding: 0.9rem 1.1rem; border-radius: 0 4px 4px 0; font-size: 0.82rem; color: var(--testo); font-style: italic; line-height: 1.7; margin-bottom: 0.75rem; }
+  .prompt strong { color: var(--blu); font-style: normal; font-weight: 500; }
+  .info-box { background: rgba(27,45,79,0.05); border: 1px solid rgba(27,45,79,0.12); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .info-box .info-label { font-size: 0.65rem; font-weight: 500; color: var(--blu); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .info-box p { font-size: 0.85rem; color: var(--testo); margin: 0; line-height: 1.7; }
+  .warning-box { background: rgba(196,96,58,0.06); border: 1px solid rgba(196,96,58,0.2); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; display: flex; gap: 1rem; align-items: flex-start; }
+  .warning-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .warning-box p { font-size: 0.85rem; color: var(--testo); margin: 0; line-height: 1.7; }
+  .warning-box strong { color: var(--terra); }
+  .divider { height: 1px; background: var(--sabbia); margin: 3rem 0; }
+  .gpt-card { background: var(--bianco); border: 1px solid var(--sabbia); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .gpt-name { font-size: 0.65rem; font-weight: 500; color: var(--terra); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .gpt-title { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 700; color: var(--blu); margin-bottom: 0.5rem; }
+  .gpt-desc { font-size: 0.8rem; color: var(--grigio); line-height: 1.65; font-weight: 300; margin: 0; }
+  .roadmap-step { display: grid; grid-template-columns: 48px 1fr; gap: 1.25rem; margin-bottom: 0; position: relative; }
+  .step-col { display: flex; flex-direction: column; align-items: center; }
+  .step-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0; z-index: 1; }
+  .step-circle.terra { background: var(--terra); }
+  .step-circle.blu   { background: var(--blu); }
+  .step-line { width: 2px; flex: 1; background: linear-gradient(to bottom, var(--sabbia), transparent); min-height: 1.5rem; }
+  .step-content { background: var(--bianco); border: 1px solid var(--sabbia); border-radius: 6px; padding: 1.1rem 1.25rem; margin-bottom: 0.75rem; }
+  .step-label { font-size: 0.62rem; font-weight: 500; color: var(--terra); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .step-title { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 700; color: var(--blu); margin-bottom: 0.4rem; }
+  .step-desc { font-size: 0.8rem; color: var(--grigio); line-height: 1.65; font-weight: 300; margin: 0; }
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .tool-card { background: var(--bianco); border: 1px solid var(--sabbia); border-radius: 6px; padding: 1rem 1.25rem; }
+  .tool-name { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 700; color: var(--blu); margin-bottom: 0.3rem; }
+  .tool-desc { font-size: 0.78rem; color: var(--grigio); font-weight: 300; line-height: 1.6; margin: 0; }
+  .cta-page { background: var(--blu); padding: 5rem 4rem; }
+  .cta-page h2 { color: #fff; font-size: 2.2rem; margin-bottom: 1.5rem; }
+  .cta-page h2 em { color: var(--terra); }
+  .cta-page p { color: rgba(255,255,255,0.7); max-width: 540px; line-height: 1.8; }
+  .cta-contact { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .cta-item { font-size: 0.88rem; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 0.5rem; }
+  .cta-item strong { color: #fff; }
+  .cta-item .dot { width: 6px; height: 6px; background: var(--terra); border-radius: 50%; flex-shrink: 0; }
+  .bg-white  { background: var(--bianco); }
+  .bg-sfondo { background: var(--sfondo); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+  .mt-sm { margin-top: 1rem; } .mt-md { margin-top: 2rem; }
+  .bold { font-weight: 500; }
+  ul.clean { list-style: none; padding: 0; }
+  ul.clean li { padding: 0.3rem 0; font-size: 0.85rem; color: var(--testo); display: flex; align-items: flex-start; gap: 0.6rem; }
+  ul.clean li::before { content: '–'; color: var(--terra); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .page-footer { padding: 1.5rem 4rem; background: var(--sfondo); border-top: 1px solid var(--sabbia); display: flex; justify-content: space-between; align-items: center; }
+  .page-footer span { font-size: 0.72rem; color: var(--grigio); font-weight: 300; }
+  .page-footer strong { color: var(--terra); }
+  .pill-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .pill { font-size:0.7rem; font-weight:500; color:#fff; background:var(--terra); padding:0.3rem 0.8rem; border-radius:2rem; letter-spacing:0.03em; }
+  .pill.blu { background:var(--blu); }
+  @media (max-width: 640px) {
+    .cover, .container, .cta-page { padding: 2.5rem 1.5rem; }
+    .cover h1 { font-size: 2.6rem; }
+    .two-col, .tools-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-accent"></div>
+    <div class="cover-label">Guida pratica · Edizione 2026 · Alessandro Borsato</div>
+    <h1>L'AI<br>in <em>Azienda</em></h1>
+    <p class="cover-sub">Non è una moda, ed è cambiata. Nel 2026 l'intelligenza artificiale ha smesso di limitarsi a rispondere: ora lavora. Questa guida spiega cosa può fare davvero per chi sta in azienda ogni giorno, con esempi reali da settori diversi, prompt pronti all'uso e una roadmap per iniziare senza sprecare tempo né soldi.</p>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-author">
+      Alessandro <span>Borsato</span>
+      <small>Consulenza AI &amp; Marketing · Verona · alessandroborsato.com</small>
+    </div>
+    <span class="cover-year">2026</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="bg-sfondo">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">Introduzione</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Perché questa guida, e perché ora</span>
+  </div>
+
+  <h2>Non sarà l'AI a rubarti<br>il lavoro. Sarà <em>chi sa usarla.</em></h2>
+
+  <p class="lead">La frase gira da anni, e nel 2026 è più vera che mai. La domanda non è più "l'AI arriverà in azienda?": è già qui, dentro Word, dentro la posta, dentro il gestionale. La domanda vera è un'altra: chi la usa con metodo e chi la lascia spenta nel cassetto.</p>
+
+  <p>Chi la usa male ottiene risposte generiche, perde tempo a correggere testi inutili e dopo due settimane smette. Chi la usa bene recupera ore ogni settimana, alza la qualità del lavoro e prende decisioni più informate. La differenza non è il software: è il metodo con cui lo si usa.</p>
+
+  <p>Questa guida non è teorica e non è un elenco di tool alla moda. È costruita su casi concreti (manifattura, retail, studi professionali, edilizia) con prompt pronti da adattare al tuo contesto. L'obiettivo è uno solo: farti capire dove l'AI può aiutarti davvero, e come iniziare subito senza buttare via tempo e budget.</p>
+
+  <div class="quote">
+    <p>"Non è una moda: è uno strumento di lavoro per semplificare i processi aziendali."</p>
+    <cite>Il principio che regge qualsiasi introduzione seria dell'AI in azienda</cite>
+  </div>
+
+  <div class="info-box">
+    <div class="info-label">Come leggere questa guida</div>
+    <p>Ogni sezione è un'area di utilizzo pratico. Per ognuna trovi: a cosa serve, quando usarla, e due o tre prompt di esempio pronti da adattare. Non serve essere informatici. Serve saper scrivere in modo chiaro quello che vuoi ottenere, e questa guida ti insegna proprio quello.</p>
+  </div>
+</div>
+</div>
+
+<!-- 00 · COSA È CAMBIATO -->
+<div class="bg-white">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">00</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Cosa è cambiato nel 2026</span>
+  </div>
+
+  <h2>Da assistente che risponde<br>a <em>collega che esegue</em></h2>
+
+  <p class="lead">Fino a poco fa l'AI era una chat: facevi una domanda, ti dava un testo, e tutto il resto (copiare, incollare, aprire i file, mandare la mail) lo facevi tu. Nel 2026 il salto è questo: l'AI non si limita più a suggerire, comincia a <strong>fare</strong>.</p>
+
+  <p>Tre cambiamenti hanno spostato l'asticella, e vale la pena capirli prima di tutto il resto:</p>
+
+  <div class="two-col mt-sm">
+    <div class="tool-card">
+      <div class="tool-name">1. Gli agenti</div>
+      <div class="tool-desc">L'AI ora esegue compiti in più passaggi da sola: apre il browser, compila un file, incrocia dati, prepara una bozza completa. Tu dai l'obiettivo, lei svolge il lavoro e ti porta il risultato da approvare.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">2. Il ragionamento</div>
+      <div class="tool-desc">I modelli "reasoning" si fermano a pensare prima di rispondere. Sbagliano molto meno su analisi, numeri e problemi complessi. Per il lavoro serio fanno la differenza rispetto alla risposta istantanea.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">3. Il collegamento ai tuoi dati</div>
+      <div class="tool-desc">Grazie a standard come MCP, l'AI si collega in modo sicuro a gestionale, CRM, Drive, calendario. Smette di "non sapere niente della tua azienda" e lavora sui tuoi dati reali.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">4. È già nei tuoi strumenti</div>
+      <div class="tool-desc">Copilot dentro Microsoft 365, Gemini dentro Google Workspace: l'AI è dentro Word, Excel, Outlook, Gmail e Documenti. Spesso non devi installare niente di nuovo: devi solo iniziare a usarla.</div>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <span class="warning-icon">⚠</span>
+    <p><strong>Più l'AI fa, più conta chi controlla.</strong> Un agente che agisce da solo può anche sbagliare da solo. Il valore non è "lasciarla fare tutto": è darle i compiti giusti e tenere una persona competente a validare il risultato. Vale soprattutto per dati, soldi e comunicazioni ufficiali.</p>
+  </div>
+</div>
+</div>
+
+<!-- 01 · IL PROMPT -->
+<div class="bg-sfondo">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">01</span>
+    <span class="section-line"></span>
+    <span class="section-tag">La base di tutto</span>
+  </div>
+
+  <h2>Come si parla<br>a una <em>AI</em></h2>
+
+  <p class="lead">Non serve essere programmatori. Serve essere chiari. Più il messaggio iniziale, il <strong>prompt</strong>, è preciso e contestualizzato, più la risposta è utile. È come dare un briefing a un collaboratore: se il briefing è vago, il risultato lo sarà altrettanto.</p>
+
+  <div class="two-col">
+    <div>
+      <div class="prompt-label" style="color: var(--grigio); border-left: 3px solid #ccc; padding-left: 0.7rem; margin-bottom: 0.5rem;">✗ Prompt generico</div>
+      <div class="prompt" style="border-left-color: #ccc; color: var(--grigio);">
+        "Scrivi un'email di risposta a un cliente che ha chiesto informazioni su un nostro prodotto."
+      </div>
+    </div>
+    <div>
+      <div class="prompt-label" style="padding-left: 0.7rem; border-left: 3px solid var(--terra); margin-bottom: 0.5rem;">✓ Prompt efficace</div>
+      <div class="prompt">
+        "Sei un <strong>responsabile commerciale</strong> di un'azienda che produce serramenti su misura. Rispondi a un cliente che ha chiesto un preventivo per finestre in legno-alluminio per una villa. L'obiettivo è valorizzare l'isolamento termico e la durata, e invitarlo a un sopralluogo gratuito. Tono <strong>professionale ma cordiale</strong>, massimo 150 parole, in italiano."
+      </div>
+    </div>
+  </div>
+
+  <h3 class="mt-md">I quattro elementi di un buon prompt</h3>
+  <div class="two-col mt-sm">
+    <div class="tool-card">
+      <div class="tool-name">1. Ruolo</div>
+      <div class="tool-desc">Di' all'AI chi deve essere. "Agisci come un responsabile commerciale esperto nel settore industriale." Il ruolo definisce tono, prospettiva e livello di dettaglio.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">2. Contesto</div>
+      <div class="tool-desc">Fornisci le informazioni rilevanti: azienda, settore, prodotto, destinatario. L'AI non conosce la tua realtà: digliene quanta più ne serve. Puoi anche allegare file e documenti.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">3. Obiettivo</div>
+      <div class="tool-desc">Sii esplicito su cosa vuoi ottenere. "L'obiettivo è convincere il cliente a fissare un appuntamento" è molto più utile di "scrivi qualcosa di convincente".</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">4. Formato</div>
+      <div class="tool-desc">Specifica come vuoi la risposta: un'email, una tabella, un elenco, massimo 3 paragrafi, in una certa lingua. Il formato guida la struttura dell'output.</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-label">Trucco da professionista · dai un esempio</div>
+    <p>Oltre ai quattro elementi, incolla un esempio di output che ti piace: "scrivi nello stile di questa email che ho già mandato". L'AI imita tono e struttura molto meglio di mille aggettivi. È il modo più rapido per ottenere la "voce" della tua azienda.</p>
+  </div>
+
+  <div class="warning-box">
+    <span class="warning-icon">⚠</span>
+    <p><strong>L'AI non sostituisce il tuo giudizio.</strong> È come una bicicletta elettrica: facilita il percorso, ma sei tu a guidare. Controlla sempre i contenuti generati prima di usarli, specialmente per comunicazioni ufficiali, dati tecnici o testi da pubblicare.</p>
+  </div>
+</div>
+</div>
+
+<!-- 02 · APPLICAZIONI -->
+<div class="bg-white">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">02</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Applicazioni pratiche</span>
+  </div>
+
+  <h2>Cosa può fare<br>l'AI <em>oggi</em> in azienda</h2>
+  <p class="lead">Otto aree di utilizzo concreto, con esempi da settori diversi e prompt pronti da adattare al tuo.</p>
+
+  <!-- 1 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">01</span><span class="cap-title">Scrittura e riscrittura di testi</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">Email commerciali, schede prodotto, post social, script video, presentazioni. L'AI genera da zero ma soprattutto <strong>riscrive e migliora</strong> ciò che esiste: adatta il tono, chiarisce un concetto tecnico, rende incisivo un paragrafo piatto. È il collaboratore che non si stanca mai di fare la quinta revisione.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Email commerciali</span><span class="cap-use-tag">Schede prodotto e-commerce</span><span class="cap-use-tag">Post social</span><span class="cap-use-tag">Newsletter</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Scrivi un'email di follow-up per un cliente che ha fatto un sopralluogo la settimana scorsa e non ha ancora risposto. Obiettivo: tenerlo caldo senza essere insistente. Tono cordiale, massimo 120 parole."</div>
+      <div class="prompt">"Riscrivi questa scheda prodotto per il nostro e-commerce in modo più orientato ai benefici per il cliente, mantenendo le specifiche tecniche. Aggiungi un titolo accattivante."</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">02</span><span class="cap-title">Traduzione e localizzazione</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">Non è solo traduzione letterale: l'AI adatta tono, stile e riferimenti culturali al mercato di destinazione. Un testo per il pubblico italiano suona diverso da uno per clienti tedeschi o americani. La localizzazione vera tiene conto di questo, e l'AI la fa in pochi secondi, in decine di lingue.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Export e mercati esteri</span><span class="cap-use-tag">Manuali e cataloghi</span><span class="cap-use-tag">E-commerce multilingua</span><span class="cap-use-tag">Comunicazioni B2B</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Traduci e adatta questo testo per un pubblico tedesco del settore industriale. Mantieni la precisione tecnica ma usa frasi più brevi e dirette, come si usa nella comunicazione B2B in Germania."</div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">03</span><span class="cap-title">Sintesi di documenti complessi</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">Contratti, capitolati, specifiche tecniche, email-fiume, verbali: l'AI riassume, estrae i punti chiave, organizza per priorità e risponde alle tue domande sul testo. Riduce drasticamente il tempo che si passa a "capire cosa dice questo documento" prima di poterci fare qualcosa.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Contratti e capitolati</span><span class="cap-use-tag">Specifiche tecniche</span><span class="cap-use-tag">Bandi e gare</span><span class="cap-use-tag">Verbali e report</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Riassumi questo contratto di 14 pagine. Elenca: durata, obblighi a nostro carico, penali, clausole di recesso e i 3 punti che secondo te dovrei far controllare a un legale."</div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">04</span><span class="cap-title">Analisi dati e generazione di report</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">Uno dei casi d'uso più potenti. L'AI legge file Excel, CSV e PDF con dati strutturati, calcola trend, individua anomalie, genera grafici e report con i KPI. Quello che richiedeva ore di lavoro manuale, o un analista dedicato, si comprime in minuti.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Analisi vendite</span><span class="cap-use-tag">KPI e dashboard</span><span class="cap-use-tag">Recensioni clienti</span><span class="cap-use-tag">Controllo di gestione</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Ho caricato un Excel con le richieste di preventivo degli ultimi 6 mesi. Fammi un'analisi con: <strong>zone più attive</strong>, <strong>prodotti più richiesti</strong>, <strong>stagionalità</strong> e tasso di conversione preventivo→ordine."</div>
+      <div class="prompt">"In questo file ci sono le recensioni Google dell'ultimo anno. Dividi i temi in positivi, neutri e negativi, e segnalami i problemi ricorrenti su cui dovrei intervenire."</div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">05</span><span class="cap-title">Organizzazione e project management</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">Pianificazione, roadmap, calendari, priorità, report di avanzamento. L'AI struttura il lavoro in modo chiaro, propone gli step successivi e identifica le dipendenze tra attività. Utile per lanciare progetti, organizzare il team e gestire scadenze multiple.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Piani di lancio</span><span class="cap-use-tag">Roadmap trimestrali</span><span class="cap-use-tag">Organizzazione eventi e fiere</span><span class="cap-use-tag">Report settimanali</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Crea un piano dettagliato per partecipare a una fiera di settore tra 3 mesi: fasi, attività, <strong>tempi in settimane</strong>, reparti coinvolti e milestone. Formato tabellare."</div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">06</span><span class="cap-title">Analisi strategica e marketing</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">SWOT, Business Model Canvas, benchmark con i competitor, analisi di mercato. L'AI lavora come un consulente strategico accessibile: struttura il problema, propone framework, analizza i dati e produce documenti utilizzabili nelle riunioni di management.</p>
+      <div class="cap-uses"><span class="cap-use-tag">SWOT</span><span class="cap-use-tag">Business Model Canvas</span><span class="cap-use-tag">Benchmark competitor</span><span class="cap-use-tag">Posizionamento</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Confronta il nostro brand con [COMPETITOR] nel segmento [MERCATO]. Analizza strategia commerciale, qualità percepita, prezzo, presenza online e rete distributiva. Concludi con 3 raccomandazioni strategiche concrete."</div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">07</span><span class="cap-title">Deep Research: ricerca approfondita</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">I modelli più avanzati analizzano decine di fonti dal web, le confrontano, citano e producono un report strutturato come quello di un analista, in pochi minuti invece che settimane. Utile per espansione in nuovi mercati, scouting di fornitori e tecnologie, preparazione a trattative importanti.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Mercati esteri</span><span class="cap-use-tag">Scouting fornitori</span><span class="cap-use-tag">Trend di settore</span><span class="cap-use-tag">Analisi normativa</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Analizza il mercato del nostro settore in Francia negli ultimi 24 mesi. Includi: andamento per fascia di prezzo, brand emergenti, nuove richieste dei clienti e barriere all'ingresso. Report in 4 sezioni con fonti e considerazioni strategiche."</div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="capability">
+    <div class="cap-header"><span class="cap-num">08</span><span class="cap-title">Immagini, video e voce</span></div>
+    <div class="cap-body">
+      <p class="cap-desc">La novità più visibile degli ultimi mesi. L'AI genera e modifica immagini di prodotto, mockup, bozze grafiche per social e campagne; trascrive e riassume riunioni; crea voce sintetica per video formativi. Non sostituisce il fotografo o il videomaker per il lavoro premium, ma copre l'80% delle necessità quotidiane di comunicazione.</p>
+      <div class="cap-uses"><span class="cap-use-tag">Mockup e visual social</span><span class="cap-use-tag">Ritocco foto prodotto</span><span class="cap-use-tag">Trascrizione riunioni</span><span class="cap-use-tag">Video formativi</span></div>
+      <div class="prompt-label">Prompt di esempio</div>
+      <div class="prompt">"Genera 3 varianti di immagine per un post Instagram che annuncia il nuovo catalogo autunnale. Stile pulito ed elegante, palette neutra, spazio in alto per il testo."</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- 03 · AGENTI & MCP -->
+<div class="bg-sfondo">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">03</span>
+    <span class="section-line"></span>
+    <span class="section-tag">La svolta del 2026</span>
+  </div>
+
+  <h2>Agenti e dati collegati:<br>quando l'AI <em>fa il lavoro</em></h2>
+
+  <p class="lead">Qui sta la differenza tra usare l'AI come una chat più intelligente e usarla come uno strumento che cambia davvero il modo di lavorare. Due concetti, spiegati semplici.</p>
+
+  <h3>Gli agenti: dai l'obiettivo, non le istruzioni passo-passo</h3>
+  <p>Un agente è un'AI che porta a termine un compito in più passaggi senza che tu la guidi a ogni singolo step. Invece di "scrivi questa email", gli dici "controlla i preventivi scaduti di questa settimana, prepara per ciascuno una mail di sollecito personalizzata e mettile in bozza". Lui apre il file, ragiona, prepara tutto, e ti porta il risultato da approvare. Tu resti il responsabile: decidi e firmi.</p>
+
+  <div class="prompt-label">Esempio · retail</div>
+  <div class="prompt">"Confronta i prezzi dei nostri 20 prodotti più venduti con quelli dei 3 competitor principali online e preparami una tabella con gli scostamenti e dove siamo fuori mercato."</div>
+  <p>L'agente cerca, raccoglie e organizza da solo. Quello che a una persona costa mezza giornata, lui lo porta pronto da rivedere.</p>
+
+  <h3 class="mt-md">MCP: collegare l'AI ai tuoi strumenti</h3>
+  <p>Il limite storico dell'AI era: "non sa niente della tua azienda". Con MCP (un nuovo standard per connettere l'AI in modo sicuro) questo è superato. L'AI si collega, con i giusti permessi, al gestionale, al CRM, a Google Drive, al calendario, e lavora sui <strong>tuoi dati reali</strong>, non su risposte generiche.</p>
+
+  <div class="info-box">
+    <div class="info-label">Cosa significa in pratica</div>
+    <p>"Quanti ordini ha fatto il cliente Rossi negli ultimi 12 mesi e qual è il margine medio?", e l'AI legge dal tuo gestionale e risponde. "Prepara l'ordine del giorno della riunione di lunedì con i clienti da richiamare", e legge dal CRM e dal calendario. Senza esportare file, senza copia-incolla.</p>
+  </div>
+
+  <div class="warning-box">
+    <span class="warning-icon">⚠</span>
+    <p><strong>Più potere, più attenzione ai permessi.</strong> Collegare l'AI ai sistemi aziendali è potentissimo ma va fatto con criterio: permessi minimi, dati sensibili protetti, una persona che valida le azioni importanti. La tecnologia c'è. Il metodo lo mettiamo noi.</p>
+  </div>
+</div>
+</div>
+
+<!-- 04 · ASSISTENTI -->
+<div class="bg-white">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">04</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Assistenti personalizzati</span>
+  </div>
+
+  <h2>Un assistente AI<br>per <em>ogni reparto</em></h2>
+
+  <p class="lead">Un assistente su misura non è un chatbot generico. È uno strumento configurato con le istruzioni, il contesto e il linguaggio della tua azienda: sempre pronto, sempre coerente. Su ChatGPT si chiamano GPT, su Claude Progetti, su Gemini Gem. Ecco cinque esempi pronti da implementare.</p>
+
+  <div class="gpt-card">
+    <div class="gpt-name">Vendite · Commerciale</div>
+    <div class="gpt-title">Assistente Commerciale</div>
+    <p class="gpt-desc">Scrive email di follow-up, risponde a richieste di preventivo, gestisce le obiezioni tipiche. Conosce il catalogo, il tono di voce del brand e le differenze rispetto ai competitor. Risponde nella lingua del mercato.</p>
+  </div>
+  <div class="gpt-card">
+    <div class="gpt-name">Ufficio tecnico · R&amp;D</div>
+    <div class="gpt-title">Assistente Tecnico</div>
+    <p class="gpt-desc">Analizza documentazione tecnica, confronta fornitori e specifiche, sintetizza pro e contro di alternative costruttive. Usa tabelle e confronti. Elabora solo a partire dai dati forniti, senza pareri inventati.</p>
+  </div>
+  <div class="gpt-card">
+    <div class="gpt-name">Amministrazione · Finance</div>
+    <div class="gpt-title">Assistente Amministrativo</div>
+    <p class="gpt-desc">Aiuta con fatture, scadenze, preventivi. Controlla errori nei documenti, redige email formali per clienti e fornitori, sintetizza pagamenti e anomalie. Segnala sempre quando serve un commercialista o un legale.</p>
+  </div>
+  <div class="gpt-card">
+    <div class="gpt-name">Customer care · Post-vendita</div>
+    <div class="gpt-title">Assistente Assistenza</div>
+    <p class="gpt-desc">Risponde alle domande ricorrenti dei clienti basandosi su manuali e FAQ aziendali, qualifica le richieste, prepara bozze di risposta coerenti con il tono del brand. Riduce i tempi di prima risposta.</p>
+  </div>
+  <div class="gpt-card">
+    <div class="gpt-name">Direzione · Management</div>
+    <div class="gpt-title">Strategy Board Assistant</div>
+    <p class="gpt-desc">Analizza trend, mercato e competitor. Sintetizza i report interni. Genera SWOT, Business Model Canvas e confronti tra brand. Stile conciso e professionale, adatto a presentazioni e documenti direzionali.</p>
+  </div>
+
+  <div class="info-box mt-md">
+    <div class="info-label">Come si crea un assistente personalizzato</div>
+    <p>Non richiede competenze tecniche: si scrive una descrizione di chi è l'assistente, cosa conosce, come deve rispondere e cosa non deve mai fare, e si caricano i documenti aziendali di riferimento. In mezza giornata si ha uno strumento operativo. Il vero lavoro è la definizione delle istruzioni, ed è lì che l'esperienza di marketing e di processo fa la differenza rispetto a chi parte solo dalla tecnologia.</p>
+  </div>
+</div>
+</div>
+
+<!-- 05 · STRUMENTI -->
+<div class="bg-sfondo">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">05</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Ecosistema AI · 2026</span>
+  </div>
+
+  <h2>Gli <em>strumenti</em> giusti<br>per ogni compito</h2>
+
+  <p class="lead">ChatGPT è il più noto, ma non è l'unico. Ogni piattaforma ha punti di forza diversi: conoscerle permette di scegliere quella giusta per ogni lavoro, invece di forzarne una su tutto.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card"><div class="tool-name">ChatGPT (OpenAI)</div><div class="tool-desc">Il più versatile per l'uso quotidiano. Ottimo per scrittura, analisi, immagini e assistenti personalizzati (GPT). Modelli di ragionamento per i compiti complessi e modalità agente per i task multi-step.</div></div>
+    <div class="tool-card"><div class="tool-name">Claude (Anthropic)</div><div class="tool-desc">Eccellente per testi lunghi, analisi di documenti complessi e ragionamento strategico. Tono naturale e affidabile per comunicazioni formali. I Progetti tengono in memoria il contesto aziendale.</div></div>
+    <div class="tool-card"><div class="tool-name">Gemini (Google)</div><div class="tool-desc">Integrato in Google Workspace (Documenti, Fogli, Gmail). Ideale per chi lavora già con gli strumenti Google e per gestire molte informazioni in un colpo solo.</div></div>
+    <div class="tool-card"><div class="tool-name">Microsoft Copilot</div><div class="tool-desc">L'AI dentro Word, Excel, Outlook e Teams. Per le aziende già su Microsoft 365 è il punto di ingresso più naturale: lavora dove si lavora già, senza cambiare abitudini.</div></div>
+    <div class="tool-card"><div class="tool-name">Perplexity</div><div class="tool-desc">Ricerca con fonti verificabili e citate, in tempo reale sul web. Ottimo per benchmark, analisi di mercato e scouting quando ti serve sapere "da dove arriva" l'informazione.</div></div>
+    <div class="tool-card"><div class="tool-name">NotebookLM</div><div class="tool-desc">Carichi i documenti aziendali e fai domande solo su quelli. Ideale per onboarding, knowledge base interne e manuali. Genera anche riassunti audio in stile podcast.</div></div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-label">Quale scegliere?</div>
+    <p>Non serve averli tutti. Per la maggior parte delle PMI il punto di partenza è uno strumento generalista (ChatGPT, Claude o Gemini) più quello già integrato nei software che usate. Il resto si aggiunge solo quando emerge un bisogno reale.</p>
+  </div>
+</div>
+</div>
+
+<!-- 06 · PRIVACY -->
+<div class="bg-white">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">06</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Dati e privacy</span>
+  </div>
+
+  <h2>I tuoi dati<br><em>restano tuoi</em></h2>
+
+  <p class="lead">È la prima obiezione che sento in azienda, ed è giusta: "se carico i nostri dati, dove finiscono?". Nel 2026 la risposta è gestibile, ma va impostata bene da subito.</p>
+
+  <ul class="clean">
+    <li><strong>Account business, non personali.</strong> Le versioni aziendali di ChatGPT, Claude e Gemini non usano i tuoi dati per addestrare i modelli. È la prima cosa da verificare e attivare.</li>
+    <li><strong>Dato giusto al momento giusto.</strong> Non serve caricare tutto. Si condivide con l'AI solo ciò che serve per quel compito, anonimizzando dati personali e sensibili quando non sono necessari.</li>
+    <li><strong>Modelli locali per i casi delicati.</strong> Per i dati più riservati esistono modelli che girano sui server dell'azienda o in cloud privato: i dati non escono mai dal perimetro aziendale. Più impegnativi da gestire, ma per certi settori sono la scelta corretta.</li>
+    <li><strong>Regole chiare per il team.</strong> Una pagina di linee guida (cosa si può caricare, cosa no, su quali strumenti) vale più di qualsiasi software. Il rischio non è la tecnologia: è l'uso improvvisato.</li>
+  </ul>
+
+  <div class="quote mt-md">
+    <p>"La privacy non è un ostacolo all'AI. È la condizione per usarla in modo serio e duraturo."</p>
+  </div>
+</div>
+</div>
+
+<!-- 07 · ROADMAP -->
+<div class="bg-sfondo">
+<div class="container">
+  <div class="section-meta">
+    <span class="section-num">07</span>
+    <span class="section-line"></span>
+    <span class="section-tag">Come iniziare</span>
+  </div>
+
+  <h2>La roadmap<br>per portare l'AI <em>in azienda</em></h2>
+
+  <p class="lead">Serve metodo, non solo entusiasmo. Le aziende che falliscono nell'adottare l'AI non lo fanno perché la tecnologia non funziona: lo fanno perché saltano i passaggi fondamentali. Questa è la sequenza corretta.</p>
+
+  <div class="mt-md">
+    <div class="roadmap-step">
+      <div class="step-col"><div class="step-circle terra">1</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-label">Prima di tutto</div>
+        <div class="step-title">Analisi dei flussi ripetitivi</div>
+        <p class="step-desc">Identifica dove si perde più tempo in operazioni manuali, ripetitive o legate alla memoria di poche persone. Non serve mappare tutto: bastano 3-5 processi ad alto impatto. Chi reinserisce sempre gli stessi dati? Chi riscrive sempre le stesse email? Dov'è il collo di bottiglia della conoscenza?</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-col"><div class="step-circle blu">2</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-label">Fondamenta</div>
+        <div class="step-title">Prompt standard per il team</div>
+        <p class="step-desc">Per ogni processo, un set di prompt testati e validati. Non si lascia che ognuno usi l'AI a modo suo: si standardizza. Un buon prompt per le email commerciali vale più di cento tentativi casuali.</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-col"><div class="step-circle terra">3</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-label">Strumenti</div>
+        <div class="step-title">Assistenti e agenti per i reparti</div>
+        <p class="step-desc">Validati i prompt, si costruiscono assistenti personalizzati per reparto e, dove ha senso, agenti che eseguono i compiti ripetitivi. L'assistente conosce già il contesto: non si ricomincia da zero ogni volta.</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-col"><div class="step-circle blu">4</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-label">Persone</div>
+        <div class="step-title">Formazione mirata e regole sui dati</div>
+        <p class="step-desc">Non "ecco come funziona ChatGPT", ma "ecco come usi questo strumento per fare questo compito specifico più in fretta". Pratica, con esempi del lavoro reale. Insieme: le linee guida su cosa si può caricare e cosa no.</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-col"><div class="step-circle terra">5</div></div>
+      <div class="step-content">
+        <div class="step-label">Continuità</div>
+        <div class="step-title">Test, feedback e aggiornamento</div>
+        <p class="step-desc">L'AI evolve in fretta. Un punto di revisione periodico permette di capire cosa funziona, cosa migliorare e quali nuovi strumenti integrare. Non è un progetto da chiudere: è una competenza da mantenere viva.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote mt-md">
+    <p>"L'AI non risolve i problemi di chi non sa quali problemi ha. Il primo passo è sempre l'analisi, non la tecnologia."</p>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-page">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-meta" style="margin-bottom: 1.5rem;">
+      <span class="section-num" style="color: var(--terra);">Fine guida</span>
+      <span class="section-line"></span>
+      <span class="section-tag" style="color: rgba(255,255,255,0.3);">Prossimi passi</span>
+    </div>
+
+    <h2>Se in azienda senti che si lavora<br><em>più del necessario</em><br>per ottenere meno del dovuto…</h2>
+
+    <p style="margin-bottom: 1rem;">riunioni che non decidono niente, dati sparsi su decine di Excel, processi che dipendono dalla memoria di una sola persona, report rifatti a mano ogni settimana.</p>
+    <p style="color: rgba(255,255,255,0.9); font-weight: 400;">Posso aiutarti a capire dove si perde tempo davvero, e cosa si può fare concretamente con l'AI, partendo da un caso piccolo e misurabile.</p>
+
+    <div class="cta-contact">
+      <div class="cta-item"><span class="dot"></span> <strong>alessandroborsato.com</strong></div>
+      <div class="cta-item"><span class="dot"></span> linkedin.com/in/alessandroborsato</div>
+      <div class="cta-item"><span class="dot"></span> Verona · consulenza AI &amp; marketing per aziende e PMI</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <span>Alessandro <strong>Borsato</strong> · Guida AI in Azienda · Edizione 2026</span>
+  <span>alessandroborsato.com</span>
+</div>
+
+</body>
+</html>
