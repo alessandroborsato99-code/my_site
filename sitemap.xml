@@ -3,6 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://alessandroborsato.com/</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://alessandroborsato.com/" />
@@ -11,61 +12,97 @@
   </url>
   <url>
     <loc>https://alessandroborsato.com/portfolio.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://alessandroborsato.com/note.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alessandroborsato.com/note/excel-10-fogli.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alessandroborsato.com/note/know-how-titolare.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alessandroborsato.com/note/preventivo-da-solo.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://alessandroborsato.com/progetti/wingamm.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alessandroborsato.com/progetti/capo-nord.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://alessandroborsato.com/progetti/wingamm-digital.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/wingamm-formazione.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alessandroborsato.com/progetti/capo-nord.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/villa-rotonda.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/cleto-chiarli.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/astolfi.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/real-estate.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/manni-group.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/calcolatore-spritz.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alessandroborsato.com/progetti/gestione-rete-distributori.html</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
