@@ -34,14 +34,19 @@
     /* Layout denso per la stampa: padding sezioni ridotto, niente buchi */
     .container { padding: 2.25rem 3rem !important; }
     .cover { min-height: 100vh; }
-    /* Proteggi dallo split solo i blocchi piccoli e atomici.
-       Le .capability (grandi) possono spezzarsi: evita i buchi di fine pagina. */
-    .info-box, .warning-box, .quote,
-    .gpt-card, .tool-card, .prompt { break-inside: avoid; }
-    /* Tieni titoli/etichette attaccati al contenuto che segue */
-    h2, h3, .section-meta, .prompt-label, .cap-header { break-after: avoid; }
-    /* Margini più compatti tra i blocchi */
+    /* Nessun blocco si taglia a metà tra due pagine: ogni card resta intera */
+    .capability, .info-box, .warning-box, .quote,
+    .gpt-card, .tool-card, .prompt,
+    .roadmap-step, ul.clean li { break-inside: avoid; }
+    /* Tieni titoli/etichette/intro attaccati al contenuto che segue */
+    h2, h3, .section-meta, .prompt-label, .cap-header, .lead { break-after: avoid; }
+    /* Card più compatte in stampa: più contenuto per pagina, meno vuoti */
     .capability { margin-bottom: 1.5rem; }
+    .cap-body { padding: 1.25rem 1.5rem; }
+    .cap-desc { margin-bottom: 1rem; }
+    .cap-uses { margin-bottom: 1rem; }
+    .prompt { padding: 0.75rem 1rem; margin-bottom: 0.6rem; }
+    .prompt-label { margin-top: 0.75rem; }
     h2 { margin-bottom: 1rem; }
     .lead { margin-bottom: 1.25rem; }
   }
