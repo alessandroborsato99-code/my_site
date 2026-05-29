@@ -14,7 +14,7 @@
       'nav.contact': 'Contatti',
 
       'hero.eyebrow': 'Chi sono',
-      'hero.l1': 'Marketing strategico.',
+      'hero.l1': 'Marketing.',
       'hero.l2': 'Intelligenza artificiale applicata.',
       'hero.l3': '',
       'hero.l4': '',
@@ -178,7 +178,7 @@
       'nav.contact': 'Contact',
 
       'hero.eyebrow': 'Project manager · Marketing & AI',
-      'hero.l1': 'Strategic marketing.',
+      'hero.l1': 'Marketing.',
       'hero.l2': 'AI as a lever in the work.',
       'hero.l3': '',
       'hero.l4': '',
