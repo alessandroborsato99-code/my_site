@@ -2669,3 +2669,43 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (max-width: 768px) {
   .note-article-body p { font-size: 17px; line-height: 1.65; }
 }
+
+/* ---------- SERVIZI ---------- */
+.serv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-top: 48px;
+}
+.serv-card {
+  padding-top: 24px;
+  border-top: 2px solid var(--ink);
+}
+.serv-card-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 18px;
+}
+.serv-card-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.serv-card-title em { font-style: italic; color: var(--accent); }
+.serv-card-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+@media (max-width: 820px) {
+  .serv-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+}
