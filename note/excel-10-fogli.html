@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f5f0" />
+
+  <title>Quando l'AI sostituisce un Excel da 10 fogli · Blog · Alessandro Borsato</title>
+  <meta name="description" content="In molte aziende il vero gestionale è un Excel cresciuto a strati negli anni. Cosa succede quando si prova a sostituirlo con un sistema AI, e perché spesso il problema non è Excel." />
+  <meta name="author" content="Alessandro Borsato" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://alessandroborsato.com/note/excel-10-fogli.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Quando l'AI sostituisce un Excel da 10 fogli" />
+  <meta property="og:description" content="Il vero gestionale di molte aziende è un Excel. Cosa serve davvero per sostituirlo." />
+  <meta property="og:url" content="https://alessandroborsato.com/note/excel-10-fogli.html" />
+  <meta property="og:locale" content="it_IT" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.88em' font-size='100' font-family='Georgia,serif' font-weight='700' font-style='italic'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css?v=28" />
+</head>
+<body data-page="note-article">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-mark" aria-label="Alessandro Borsato">A<em>B</em></a>
+      <div class="nav-links">
+        <a href="../index.html#chi-sono" class="nav-link">Chi sono</a>
+        <a href="../portfolio.html" class="nav-link">Progetti</a>
+        <a href="../note.html" class="nav-link is-active">Blog</a>
+        <a href="../index.html#contatti" class="nav-link">Contatti</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Cambia lingua">
+          <span class="lang-opt is-active" data-lang="it">IT</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
+        <button class="theme-btn" id="themeToggle" aria-label="Cambia tema">
+          <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEAD -->
+  <header class="detail-head">
+    <div class="container">
+      <a href="../note.html" class="detail-back">
+        <span class="arrow">←</span>
+        <span>Blog</span>
+      </a>
+
+      <span class="note-article-meta">2026 · Maggio · 4 min di lettura</span>
+
+      <h1 class="detail-title">
+        Quando l'AI sostituisce<br>
+        <em>un Excel da 10 fogli.</em>
+      </h1>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <article class="note-article">
+    <div class="container note-article-body">
+
+      <p>In molte aziende il vero gestionale è un Excel. Non lo dicono nei meeting, non lo scrivono nelle slide, ma è così. Un file cresciuto a strati negli anni, con fogli aggiunti uno alla volta per coprire un caso particolare, formule che pescano da altri fogli, una persona sola che sa dove sta cosa.</p>
+
+      <p>Funziona, finché funziona. Poi qualcuno aggiunge una colonna nel posto sbagliato, una formula si rompe, tre reparti si fermano per due giorni a capire dove sta il problema.</p>
+
+      <p>Il caso più chiaro che ho visto era una rete di distributori: otto distributori in giro, ognuno con il suo Excel scollegato. Ogni mese il responsabile della rete metteva insieme i numeri a mano, copiando e incollando da otto file diversi. Tre giorni di lavoro al mese, solo per avere una visione d'insieme. Quando un distributore mandava il file in ritardo, ritardava tutto il resto.</p>
+
+      <p>La tentazione è di pensare che il problema sia Excel. Non è Excel. Il problema è che <em>i dati non parlano tra loro</em>. Un sistema AI applicato qui non serve a "togliere Excel", serve a rendere quei dati interrogabili in un linguaggio naturale, senza dover sapere dove sta cosa. Il responsabile della rete continua a fare la sua domanda, ma invece di aprire otto file la fa al sistema e ottiene la risposta.</p>
+
+      <p>Nel caso che racconto, la quadratura mensile è passata da tre giorni a un'ora. Non per magia: perché sotto, ai dati, qualcuno ha messo ordine prima. L'AI è la parte facile. La parte difficile è decidere che cosa è un dato pulito e cosa no.</p>
+
+      <p>La lezione che mi porto da progetti come questo è semplice. <em>Non si sostituisce uno strumento, si sostituisce un modo di lavorare.</em> Se il modo di lavorare resta lo stesso, anche il sistema più sofisticato finisce a fare quello che faceva l'Excel, solo con un'interfaccia più bella.</p>
+
+      <p>Il punto non è togliere Excel. È restituire tempo.</p>
+
+    </div>
+  </article>
+
+  <!-- NEXT NOTE -->
+  <section class="next-project">
+    <div class="container">
+      <p class="next-project-eyebrow">Articolo successivo</p>
+      <a href="know-how-titolare.html">
+        <span class="next-project-title">
+          Il know-how che vive solo <em>nella testa del titolare.</em>
+        </span>
+        <span class="next-project-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-meta">© <span id="year">2026</span> Alessandro Borsato</span>
+      <div class="footer-links">
+        <a href="../index.html#chi-sono" class="footer-link">Chi sono</a>
+        <a href="../portfolio.html" class="footer-link">Progetti</a>
+        <a href="../note.html" class="footer-link">Blog</a>
+        <a href="../index.html#contatti" class="footer-link">Contatti</a>
+        <a href="https://linkedin.com/in/alessandroborsato" target="_blank" rel="noopener" class="footer-link">LinkedIn ↗︎</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=22"></script>
+</body>
+</html>

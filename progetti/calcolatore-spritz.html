@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <title>S.P.R.I.Z. Calculator · Calcolatore di risparmio per ospedali · Alessandro Borsato</title>
+
+  <meta name="description" content="Case history sanità: sviluppo del calcolatore S.P.R.I.Z. che permette agli ospedali di stimare risparmi economici, riduzione CO₂ e ore recuperate passando dai contenitori tradizionali agli aspiratori a circuito chiuso." />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.88em' font-size='100' font-family='Georgia,serif' font-weight='700' font-style='italic'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css?v=28" />
+  <link rel="canonical" href="https://alessandroborsato.com/progetti/calcolatore-spritz.html" />
+  <meta name="author" content="Alessandro Borsato" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Alessandro Borsato" />
+  <meta property="og:url" content="https://alessandroborsato.com/progetti/calcolatore-spritz.html" />
+  <meta property="og:image" content="https://alessandroborsato.com/images/spritz.webp" />
+  <meta property="og:locale" content="it_IT" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://alessandroborsato.com/images/spritz.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "S.P.R.I.Z. Calculator",
+    "description": "Calcolatore web per ospedali: stima risparmi economici, riduzione CO₂ e ore di lavoro recuperate passando dai contenitori tradizionali al sistema di aspirazione a circuito chiuso S.P.R.I.Z.",
+    "url": "https://alessandroborsato.com/progetti/calcolatore-spritz.html",
+    "image": "https://alessandroborsato.com/images/spritz.webp",
+    "author": { "@type": "Person", "name": "Alessandro Borsato", "url": "https://alessandroborsato.com/" },
+    "inLanguage": "it-IT",
+    "isPartOf": { "@type": "WebSite", "url": "https://alessandroborsato.com/" }
+  }
+  </script>
+
+</head>
+<body data-page="detail">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-mark" aria-label="Alessandro Borsato">
+        A<em>B</em>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#chi-sono" class="nav-link" data-i18n="nav.chi">Chi sono</a>
+        <a href="../portfolio.html" class="nav-link is-active" data-i18n="nav.portfolio">Progetti</a>
+        <a href="../note.html" class="nav-link">Blog</a>
+        <a href="../index.html#contatti" class="nav-link" data-i18n="nav.contact">Contatti</a>
+      </div>
+      <div class="nav-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Cambia lingua">
+          <span class="lang-opt is-active" data-lang="it">IT</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
+        <button class="theme-btn" id="themeToggle" aria-label="Cambia tema">
+          <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DETAIL HEAD -->
+  <header class="detail-head">
+    <div class="container">
+      <a href="../portfolio.html" class="detail-back">
+        <span class="arrow">←</span>
+        <span>Portfolio</span>
+      </a>
+
+      <h1 class="detail-title">
+        S.P.R.I.Z.<br>
+        <em>calcolatore di risparmio per ospedali</em>
+      </h1>
+
+      <p class="detail-lede">
+        Negli ospedali italiani la gestione dei liquidi biologici aspirati in sala operatoria e in terapia intensiva è ancora oggi affidata in larga parte ai contenitori tradizionali: costi alti, tanta plastica, ore di lavoro perse, rischio biologico per il personale. Il sistema a circuito chiuso S.P.R.I.Z. risolve questi problemi, ma per un direttore sanitario o un provveditore il vero ostacolo è quantificare il vantaggio. Ho sviluppato il calcolatore online che fa esattamente questo: dati di reparto in entrata, risparmi economici, ambientali e di tempo in uscita.
+      </p>
+    </div>
+  </header>
+
+  <!-- COVER IMAGE -->
+  <div class="container">
+    <div class="detail-cover">
+      <img src="../images/spritz.webp" alt="Sala operatoria, gestione liquidi biologici" loading="eager" />
+    </div>
+  </div>
+
+  <!-- PROBLEMA -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+        <div>
+          <span class="detail-section-num">01</span>
+          <h2 class="detail-section-title">Il problema</h2>
+        </div>
+        <div class="detail-body">
+          <p>
+            Il decisore ospedaliero (direttore sanitario, provveditore, coordinatore infermieristico) sa intuitivamente che il sistema a circuito chiuso costa meno del metodo tradizionale, inquina meno e fa risparmiare ore al personale di sala. Ma quando deve portare la decisione in commissione gare o davanti alla direzione generale, le sensazioni non bastano: servono numeri sul proprio reparto, sul proprio volume di pazienti, sui propri giorni di attività.
+          </p>
+          <p>
+            Senza uno strumento di stima rapida, il confronto restava bloccato: il valore della tecnologia c'era, ma non si poteva mostrare in cifre sul caso specifico dell'ospedale interessato. Risultato, decisioni rinviate, gare perse per "mancanza di dati".
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGIA -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+        <div>
+          <span class="detail-section-num">02</span>
+          <h2 class="detail-section-title">La strategia</h2>
+        </div>
+        <div class="detail-body">
+          <p>
+            Trasformare l'argomento di vendita in uno <em>strumento di valutazione</em>: un calcolatore pubblico, accessibile dal sito ufficiale, che il decisore ospedaliero può compilare in autonomia in pochi minuti e da cui ricava una stima personalizzata di costi, emissioni e tempo recuperato per il proprio reparto.
+          </p>
+          <p>
+            La logica di posizionamento: smettere di "raccontare" il vantaggio, e iniziare a farlo <em>misurare</em>. Lo strumento diventa un attivatore commerciale serio, ma anche un servizio reale per chi deve prendere decisioni di budget in sanità pubblica.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUZIONE -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+        <div>
+          <span class="detail-section-num">03</span>
+          <h2 class="detail-section-title">La soluzione AI</h2>
+        </div>
+        <div class="detail-body">
+          <p>
+            Calcolatore web pubblico, mobile-first, costruito sui modelli economici e ambientali validati dal produttore. Il flusso è guidato per tipologia di reparto (sale operatorie di urologia, terapia intensiva con CRRT, reparti di degenza), parametri operativi (litri prodotti al giorno, pazienti trattati, giorni attivi), e dati di contatto per ricevere il report.
+          </p>
+          <div class="capabilities" style="margin-top: 40px;">
+            <div class="cap">
+              <span class="cap-num">01</span>
+              <div>
+                <h3 class="cap-title">Architettura per reparto</h3>
+                <p class="cap-text">Tre percorsi di calcolo distinti su sale operatorie di urologia (TURP, TURB, PCNL), terapia intensiva con dialisi continua (CRRT), reparti di degenza urologica. Logica specifica per ciascun caso clinico.</p>
+              </div>
+            </div>
+            <div class="cap">
+              <span class="cap-num">02</span>
+              <div>
+                <h3 class="cap-title">Motore di stima</h3>
+                <p class="cap-text">Confronto annuale tra metodo tradizionale a contenitori e sistema a circuito chiuso S.P.R.I.Z. Output: risparmio economico in euro, costo operativo giornaliero, riduzione CO₂ in kg, percentuali di miglioramento.</p>
+              </div>
+            </div>
+            <div class="cap">
+              <span class="cap-num">03</span>
+              <div>
+                <h3 class="cap-title">Report personalizzato</h3>
+                <p class="cap-text">Risultato consegnato via email con link dedicato: grafici, dettaglio dei calcoli, scenario di confronto. Materiale già pronto per essere portato in commissione interna o in confronto con la direzione.</p>
+              </div>
+            </div>
+            <div class="cap">
+              <span class="cap-num">04</span>
+              <div>
+                <h3 class="cap-title">UX da contesto sanitario</h3>
+                <p class="cap-text">Linguaggio clinico corretto, niente gergo da marketing, flusso pensato per professionisti sanitari abituati a moduli tecnici. Tempo di compilazione contenuto, possibilità di salvare i risultati.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISULTATO -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+        <div>
+          <span class="detail-section-num">04</span>
+          <h2 class="detail-section-title">Il risultato</h2>
+        </div>
+        <div class="detail-body">
+          <p>
+            Il calcolatore è online su <a href="https://www.aspiratoriliquidibiologici.it/calcolatore/" target="_blank" rel="noopener" style="text-decoration: underline; text-underline-offset: 4px;">aspiratoriliquidibiologici.it/calcolatore</a> ed è diventato lo strumento centrale dell'azione commerciale verso strutture sanitarie italiane. I lead arrivano già qualificati: il decisore ha visto la stima sul proprio reparto prima del primo contatto con la rete vendita.
+          </p>
+          <p>
+            La leva non è solo commerciale: lo strumento aiuta gli ospedali a costruire un business case interno serio, basato su dati di reparto e non su brochure. È il modello che voglio replicare: l'AI non come gadget di marketing, ma come strumento che porta valore tecnico a chi deve decidere.
+          </p>
+
+          <div class="detail-results">
+            <div class="detail-result">
+              <span class="detail-result-fig is-accent">5 min</span>
+              <span class="detail-result-lab">per ottenere una stima personalizzata sul proprio reparto, contro le settimane necessarie con un'analisi tradizionale</span>
+            </div>
+            <div class="detail-result">
+              <span class="detail-result-fig is-accent">100%</span>
+              <span class="detail-result-lab">dei lead arrivano già con la stima fatta sul proprio reparto, prima del primo contatto con la rete vendita</span>
+            </div>
+            <div class="detail-result">
+              <span class="detail-result-fig is-accent">decine</span>
+              <span class="detail-result-lab">di valutazioni completate da strutture sanitarie italiane dal lancio dello strumento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <section class="next-project">
+    <div class="container">
+      <p class="next-project-eyebrow">Progetto successivo</p>
+      <a href="real-estate.html">
+        <span class="next-project-title">
+          Real Estate <em>consulenza AI continuativa</em>
+        </span>
+        <span class="next-project-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-meta">© <span id="year">2026</span> Alessandro Borsato</span>
+      <div class="footer-links">
+        <a href="../index.html#chi-sono" class="footer-link">Chi sono</a>
+        <a href="../portfolio.html" class="footer-link">Progetti</a>
+        <a href="../note.html" class="footer-link">Blog</a>
+        <a href="../index.html#contatti" class="footer-link">Contatti</a>
+        <a href="https://linkedin.com/in/alessandroborsato" target="_blank" rel="noopener" class="footer-link">LinkedIn ↗︎</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=22"></script>
+</body>
+</html>
