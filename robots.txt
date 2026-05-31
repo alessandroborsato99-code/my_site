@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alessandroborsato.com/sitemap.xml
+Sitemap: https://www.alessandroborsato.com/sitemap.xml
