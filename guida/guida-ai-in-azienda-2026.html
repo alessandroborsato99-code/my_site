@@ -25,30 +25,36 @@
     line-height: 1.7;
   }
   @media print {
-    /* Pagina A4 reale, margini gestiti dal padding del container
-       (margine @page a 0 così copertina e CTA restano a tutta pagina) */
-    @page { size: A4; margin: 0; }
+    /* Pagina A4 reale. Margine fisico gestito da @page così il contenuto
+       non tocca mai i bordi del foglio; copertina e CTA a tutta pagina. */
+    @page { size: A4; margin: 16mm 0; }
+    @page :first { margin: 0; }
     .no-print { display: none; }
     .page-break { page-break-before: always; }
     body { background: white; }
-    /* Niente bande di fondo alternate in stampa: pagine uniformi,
-       le card/box danno la struttura (la copertina e la CTA restano blu) */
+    /* Pagine uniformi: niente bande di fondo alternate in stampa */
     .bg-sfondo, .bg-white { background: #fff !important; }
-    /* Ogni sezione numerata parte in cima a una pagina nuova (stile capitolo) */
-    .bg-sfondo, .bg-white, .cta-page { break-before: page; }
-    /* Margini di pagina reali via padding del container */
-    .container { padding: 18mm 16mm !important; }
+    /* FLUSSO CONTINUO: le sezioni NON partono forzatamente a inizio pagina.
+       Così ogni pagina si riempie cima-fondo, niente pagine mezze vuote.
+       Solo copertina (prima pagina) e CTA restano pagine dedicate. */
     .cover { min-height: 100vh; }
-    .cta-page { padding: 24mm 16mm !important; }
-    /* Nessun blocco si taglia a metà tra due pagine: ogni card resta intera */
+    .cta-page { break-before: page; padding: 24mm 16mm !important; }
+    .page-footer { break-before: avoid; }
+    /* Margini orizzontali via padding; lo spazio verticale tra sezioni
+       fa da separatore di capitolo (i margini @page danno il resto) */
+    .container { padding: 10mm 16mm !important; }
+    /* Ogni blocco resta intero: mai spezzato tra due pagine */
     .capability, .info-box, .warning-box, .quote,
-    .gpt-card, .tool-card, .prompt,
-    .roadmap-step, ul.clean li { break-inside: avoid; }
+    .gpt-card, .tool-card, .prompt, .two-col, .tools-grid,
+    .roadmap-step, ul.clean li, .lead { break-inside: avoid; }
+    /* L'apertura di sezione (eyebrow + titolo + lead) resta unita
+       e non finisce orfana in fondo a una pagina */
+    .section-meta { break-after: avoid; }
+    h2, h3, .prompt-label, .cap-header, .lead { break-after: avoid; }
+    h2, h3 { break-before: avoid; }
     /* Orfani e vedove: niente righe isolate a inizio/fine pagina */
     p, li, .cap-desc, .step-desc, .gpt-desc, .tool-desc { orphans: 3; widows: 3; }
-    /* Tieni titoli/etichette/intro attaccati al contenuto che segue */
-    h2, h3, .section-meta, .prompt-label, .cap-header, .lead { break-after: avoid; }
-    /* Card più compatte in stampa: più contenuto per pagina, meno vuoti */
+    /* Card più compatte in stampa */
     .capability { margin-bottom: 1.5rem; }
     .cap-body { padding: 1.25rem 1.5rem; }
     .cap-desc { margin-bottom: 1rem; }
