@@ -1,6 +1,17 @@
 // Serverless function (Vercel) — iscrive il contatto alla lista Brevo
-// e sblocca il download della guida. La API key sta nelle env di Vercel,
-// mai nel client: BREVO_API_KEY, BREVO_LIST_ID.
+// e rilascia un token firmato a tempo per scaricare la guida da /api/guida.
+// La API key sta nelle env di Vercel, mai nel client: BREVO_API_KEY, BREVO_LIST_ID.
+
+const crypto = require('crypto');
+
+// Token firmato HMAC, valido 15 minuti. La chiave di firma è la API key Brevo
+// (gia segreta lato server, non lascia mai il server).
+function makeToken(secret) {
+  const exp = Date.now() + 15 * 60 * 1000;
+  const payload = Buffer.from(JSON.stringify({ exp })).toString('base64url');
+  const sig = crypto.createHmac('sha256', secret).update(payload).digest('base64url');
+  return `${payload}.${sig}`;
+}
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -66,9 +77,9 @@ module.exports = async (req, res) => {
       resp = await createContact(false);
     }
 
-    // 201 creato, 204 aggiornato: entrambi ok.
+    // 201 creato, 204 aggiornato: entrambi ok. Rilascia il token di download.
     if (resp.ok || resp.status === 204) {
-      return res.status(200).json({ ok: true });
+      return res.status(200).json({ ok: true, token: makeToken(apiKey) });
     }
 
     const detail = await resp.text().catch(() => '');

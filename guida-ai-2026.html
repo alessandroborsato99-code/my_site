@@ -264,7 +264,7 @@
             <div class="check">✓︎</div>
             <h3>Ecco la tua guida</h3>
             <p>Grazie! Il download dovrebbe partire da solo. Se non succede, usa il pulsante qui sotto.</p>
-            <a class="guida-btn" id="guidaDownload" href="guida/guida-ai-in-azienda-2026.pdf" download style="display:inline-block;text-decoration:none;box-sizing:border-box;">Scarica la guida (PDF)</a>
+            <a class="guida-btn" id="guidaDownload" href="#" style="display:inline-block;text-decoration:none;box-sizing:border-box;">Scarica la guida (PDF)</a>
           </div>
         </div>
         </aside>
@@ -315,21 +315,22 @@
       const success = document.getElementById('guidaSuccess');
       const errorEl = document.getElementById('guidaError');
       const submitBtn = document.getElementById('guidaSubmit');
-      const PDF_URL = 'guida/guida-ai-in-azienda-2026.pdf';
+      const downloadLink = document.getElementById('guidaDownload');
 
-      const triggerDownload = () => {
+      const triggerDownload = (url) => {
         const a = document.createElement('a');
-        a.href = PDF_URL;
-        a.download = 'Guida-AI-in-Azienda-2026.pdf';
+        a.href = url;
         document.body.appendChild(a);
         a.click();
         a.remove();
       };
 
-      const showSuccess = () => {
+      const showSuccess = (token) => {
+        const url = '/api/guida?token=' + encodeURIComponent(token);
+        if (downloadLink) downloadLink.href = url;
         form.classList.add('is-hidden');
         success.classList.add('is-visible');
-        triggerDownload();
+        triggerDownload(url);
       };
 
       const showError = (msg) => {
@@ -365,10 +366,10 @@
               _gotcha: form._gotcha.value,
             }),
           });
-          if (res.ok) {
-            showSuccess();
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.token) {
+            showSuccess(data.token);
           } else {
-            const data = await res.json().catch(() => ({}));
             showError(data.error);
           }
         } catch (err) {
