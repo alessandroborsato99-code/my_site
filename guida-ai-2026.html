@@ -179,18 +179,17 @@
             <div class="ti">L'AI<br>in <em>Azienda</em></div>
           </div>
 
-          <!-- TEMP-PREVIEW: campi non obbligatori per anteprima estetica. Rimettere "required" quando il form Brevo è collegato. -->
-          <form class="guida-form" id="guidaForm" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST">
+          <form class="guida-form" id="guidaForm" action="/api/subscribe" method="POST" novalidate>
             <h2>Scarica la guida</h2>
             <p class="sub">Lascia la tua email: ti diamo subito il PDF e, ogni tanto, qualche spunto pratico sull'AI in azienda. Niente spam.</p>
 
             <div class="guida-field">
               <label for="g-nome">Nome</label>
-              <input type="text" id="g-nome" name="nome" placeholder="Il tuo nome" />
+              <input type="text" id="g-nome" name="nome" placeholder="Il tuo nome" required />
             </div>
             <div class="guida-field">
               <label for="g-email">Email</label>
-              <input type="email" id="g-email" name="email" placeholder="nome@azienda.it" />
+              <input type="email" id="g-email" name="email" placeholder="nome@azienda.it" required />
             </div>
             <div class="guida-field">
               <label for="g-azienda">Azienda <span style="color:var(--ink-faint);font-weight:400">(facoltativo)</span></label>
@@ -198,12 +197,11 @@
             </div>
 
             <div class="guida-consent">
-              <input type="checkbox" id="g-consent" name="consenso" />
+              <input type="checkbox" id="g-consent" name="consenso" required />
               <label for="g-consent">Ho letto la <a href="privacy-policy.html" target="_blank" rel="noopener">privacy policy</a> e acconsento al trattamento dei dati per ricevere la guida e comunicazioni occasionali. Posso disiscrivermi quando voglio.</label>
             </div>
 
-            <input type="hidden" name="_subject" value="Nuovo download guida AI 2026" />
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <button type="submit" class="guida-btn" id="guidaSubmit">Scarica il PDF gratis</button>
             <p class="guida-note">PDF · 14 pagine · ~1&nbsp;MB. Parte subito dopo l'invio.</p>
@@ -282,33 +280,47 @@
         triggerDownload();
       };
 
+      const showError = (msg) => {
+        errorEl.textContent = msg || 'Qualcosa è andato storto. Riprova, oppure scrivimi e te la mando io.';
+        errorEl.classList.add('is-visible');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Scarica il PDF gratis';
+      };
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         errorEl.classList.remove('is-visible');
+
+        const nome = form.nome.value.trim();
+        const email = form.email.value.trim();
+        const consenso = form.consenso.checked;
+        if (!nome || !email) return showError('Inserisci nome ed email.');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Email non valida.');
+        if (!consenso) return showError('Devi accettare la privacy policy per ricevere la guida.');
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Invio…';
 
-        // Se Formspree non è ancora configurato, sblocca comunque il download.
-        if (form.action.indexOf('REPLACE_FORM_ID') !== -1) {
-          showSuccess();
-          return;
-        }
-
         try {
-          const res = await fetch(form.action, {
+          const res = await fetch('/api/subscribe', {
             method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' },
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              nome,
+              email,
+              azienda: form.azienda.value.trim(),
+              consenso: true,
+              _gotcha: form._gotcha.value,
+            }),
           });
           if (res.ok) {
             showSuccess();
           } else {
-            throw new Error('bad response');
+            const data = await res.json().catch(() => ({}));
+            showError(data.error);
           }
         } catch (err) {
-          errorEl.classList.add('is-visible');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Scarica il PDF gratis';
+          showError();
         }
       });
     })();
